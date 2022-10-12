@@ -1,0 +1,328 @@
+/* autoprefixer grid: autoplace */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Open+Sans:wght@500&display=swap");
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  background-color: #e5e6ea;
+}
+
+.container {
+  width: 1150px;
+  margin: 0 auto;
+}
+
+header {
+  color: #000;
+  background-color: #fff;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 120px;
+  width: 1240px;
+  margin: 0 auto;
+}
+.nav__logo {
+  color: #f45520;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+}
+.nav__user {
+  display: flex;
+  align-items: center;
+}
+.nav__images {
+  width: 35px;
+  height: 35px;
+  margin-right: 8px;
+}
+.nav__name {
+  font-size: 14px;
+}
+.nav__study {
+  font-weight: 400;
+  font-size: 12px;
+}
+.nav__btn {
+  background: #000000;
+  border-radius: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  padding: 18px 40px;
+  color: #ffffff;
+}
+.nav__btn:nth-child(2) {
+  margin-left: 23px;
+}
+.nav__btn-active {
+  background-color: #f45520;
+}
+
+.select {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 90px;
+}
+.select__errors {
+  margin-top: 60px;
+  text-align: center;
+  color: red;
+}
+.select__wrapper {
+  position: relative;
+}
+.select__wrapper::after {
+  content: url("../images/vector.svg");
+  position: absolute;
+  top: 50%;
+  right: 26px;
+  transform: translateY(-50%);
+}
+.select select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  align-items: center;
+  color: #c3c3c3;
+  border: none;
+  outline: none;
+  background-color: #fbfbfb;
+  box-shadow: inset 1px 7px 14px rgba(214, 214, 214, 0.25);
+  border-radius: 10px;
+  height: 67px;
+  padding: 0 58px 0 30px;
+}
+.select button {
+  color: #fbfbfb;
+  border: none;
+  outline: none;
+  background-color: #f45520;
+  border-radius: 10px;
+  width: 100px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.select button:hover {
+  background-color: rgba(244, 85, 32, 0.8);
+}
+
+.diargams {
+  display: flex;
+  justify-content: center;
+  margin: 70px 0;
+}
+.diargams__circle {
+  width: 300px;
+}
+.diargams__graphic {
+  width: 1000px;
+  margin-left: 30px;
+}
+
+.none {
+  display: none;
+}
+
+.landing {
+  background-color: #fff;
+}
+
+.container__landing {
+  width: 1240px;
+  margin: 0 auto;
+}
+
+.footer {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  padding: 30px 0;
+}
+.footer__content {
+  background-color: #fff;
+}
+.footer h3 {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+.footer p {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  color: #898989;
+}
+.footer__links > a:nth-child(2) {
+  margin-left: 22px;
+}
+
+.result {
+  padding: 160px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.result h1 {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 60px;
+  text-transform: uppercase;
+  color: #f45520;
+  margin-bottom: 84px;
+}
+.result p {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  color: #898989;
+  margin-bottom: 46px;
+  width: 620px;
+}
+.result__button {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000;
+  background-color: transparent;
+  text-decoration: none;
+  padding: 8px 36px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+
+.works__container {
+  display: -ms-grid;
+  display: grid;
+  align-items: center;
+  -ms-grid-columns: 1fr 0px 1fr;
+  grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: 1fr 0px 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+      grid-template-areas: "item1 item3" "item2 item3";
+}
+.works__container .item1 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: item1;
+}
+.works__container .item2 {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: item2;
+}
+.works__container .item3 {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 3;
+  -ms-grid-column: 3;
+  grid-area: item3;
+  display: flex;
+  justify-content: flex-end;
+}
+.works__header {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 60px;
+  color: #000000;
+  margin-bottom: -160px;
+}
+.works__item {
+  width: 620px;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: flex-start;
+}
+.works__item h1,
+.works__item p {
+  text-align: left;
+  width: 470px;
+}
+.works__title {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 60px;
+  color: #898989;
+}
+.works__text {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 27px;
+  color: #898989;
+}
+
+.look {
+  background-color: #fff;
+  margin: 250px 0 0 0;
+  padding-bottom: 140px;
+}
+.look__container {
+  background-color: #f45520;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+.look h1 {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 44px;
+  color: #ffffff;
+  max-width: 600px;
+  margin-top: 127px;
+  margin: 157px 0 36px;
+}
+.look__buttons {
+  display: flex;
+}
+.look__buttons__btn {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  background-color: #fff;
+  padding: 21px 34px;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  color: #f45520;
+}
+.look__buttons__btn-active {
+  color: #fff;
+  background-color: transparent;
+  margin-left: 32px;
+}
