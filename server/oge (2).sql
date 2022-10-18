@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 10 2022 г., 08:30
+-- Время создания: Окт 14 2022 г., 14:48
 -- Версия сервера: 10.3.22-MariaDB
 -- Версия PHP: 7.1.33
 
@@ -20,6 +20,39 @@ SET time_zone = "+00:00";
 --
 -- База данных: `oge`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `infofullitems`
+--
+
+CREATE TABLE `infofullitems` (
+  `id` int(11) NOT NULL,
+  `item` varchar(255) NOT NULL,
+  `keyID` varchar(255) NOT NULL,
+  `0-9` int(11) NOT NULL,
+  `10-19` int(11) NOT NULL,
+  `20-29` int(11) NOT NULL,
+  `30-39` int(11) NOT NULL,
+  `40-49` int(11) NOT NULL,
+  `50-59` int(11) NOT NULL,
+  `60-69` int(11) NOT NULL,
+  `70-79` int(11) NOT NULL,
+  `80-89` int(11) NOT NULL,
+  `90-99` int(11) NOT NULL,
+  `-100` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `infofullitems`
+--
+
+INSERT INTO `infofullitems` (`id`, `item`, `keyID`, `0-9`, `10-19`, `20-29`, `30-39`, `40-49`, `50-59`, `60-69`, `70-79`, `80-89`, `90-99`, `-100`) VALUES
+(1, 'Русский язык', '0', 1, 3, 3, 4, 0, 4, 7, 0, 0, 6, 4),
+(2, 'Математика', '0', 0, 3, 3, 4, 0, 4, 7, 0, 0, 6, 4),
+(3, 'ИКТ', '0', 1, 3, 3, 4, 0, 4, 7, 0, 0, 6, 4),
+(4, 'Немецкий язык', '0', 0, 3, 3, 4, 0, 4, 7, 0, 0, 6, 4);
 
 -- --------------------------------------------------------
 
@@ -993,6 +1026,12 @@ INSERT INTO `infoyearschools` (`id`, `year`, `schools`, `mynicipal`, `keyID`) VA
 --
 
 --
+-- Индексы таблицы `infofullitems`
+--
+ALTER TABLE `infofullitems`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `infoitems`
 --
 ALTER TABLE `infoitems`
@@ -1019,6 +1058,12 @@ ALTER TABLE `infoyearschools`
 --
 -- AUTO_INCREMENT для сохранённых таблиц
 --
+
+--
+-- AUTO_INCREMENT для таблицы `infofullitems`
+--
+ALTER TABLE `infofullitems`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `infoitems`

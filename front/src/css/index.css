@@ -1,10 +1,12 @@
-/* autoprefixer grid: autoplace */
+
+
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Open+Sans:wght@500&display=swap");
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   background-color: #e5e6ea;
+  overflow-x: hidden;
 }
 
 .container {
@@ -18,9 +20,15 @@ header {
 }
 
 .nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   height: 120px;
   width: 1240px;
   margin: 0 auto;
@@ -32,8 +40,12 @@ header {
   font-size: 24px;
 }
 .nav__user {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .nav__images {
   width: 35px;
@@ -69,8 +81,12 @@ header {
 }
 
 .select {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-top: 90px;
 }
 .select__errors {
@@ -86,7 +102,9 @@ header {
   position: absolute;
   top: 50%;
   right: 26px;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 .select select {
   -webkit-appearance: none;
@@ -95,12 +113,15 @@ header {
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   color: #c3c3c3;
   border: none;
   outline: none;
   background-color: #fbfbfb;
-  box-shadow: inset 1px 7px 14px rgba(214, 214, 214, 0.25);
+  -webkit-box-shadow: inset 1px 7px 14px rgba(214, 214, 214, 0.25);
+          box-shadow: inset 1px 7px 14px rgba(214, 214, 214, 0.25);
   border-radius: 10px;
   height: 67px;
   padding: 0 58px 0 30px;
@@ -116,6 +137,8 @@ header {
   font-size: 18px;
   line-height: 22px;
   cursor: pointer;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
   transition: all 0.3s;
 }
 .select button:hover {
@@ -123,8 +146,12 @@ header {
 }
 
 .diargams {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin: 70px 0;
 }
 .diargams__circle {
@@ -149,9 +176,15 @@ header {
 }
 
 .footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: start;
-  justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 30px 0;
 }
 .footer__content {
@@ -178,8 +211,12 @@ header {
 
 .result {
   padding: 160px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 .result h1 {
   font-family: "Open Sans";
@@ -218,14 +255,16 @@ header {
 .works__container {
   display: -ms-grid;
   display: grid;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -ms-grid-columns: 1fr 0px 1fr;
   grid-template-columns: 1fr 1fr;
   -ms-grid-rows: 1fr 0px 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
-      grid-template-areas: "item1 item3" "item2 item3";
+          grid-template-areas: "item1 item3" "item2 item3";
 }
 .works__container .item1 {
   -ms-grid-row: 1;
@@ -242,8 +281,12 @@ header {
   -ms-grid-row-span: 3;
   -ms-grid-column: 3;
   grid-area: item3;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 .works__header {
   font-family: "Open Sans";
@@ -256,9 +299,14 @@ header {
 }
 .works__item {
   width: 620px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-flow: wrap;
-  justify-content: flex-start;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 .works__item h1,
 .works__item p {
@@ -290,8 +338,12 @@ header {
 .look__container {
   background-color: #f45520;
   border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .look h1 {
   font-family: "Montserrat";
@@ -305,6 +357,8 @@ header {
   margin: 157px 0 36px;
 }
 .look__buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .look__buttons__btn {

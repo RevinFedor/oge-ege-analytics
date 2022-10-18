@@ -3,13 +3,22 @@ import images_1 from "../images/images_1.svg";
 import images_2 from "../images/images_2.svg";
 import images_3 from "../images/images_3.png";
 import images_4 from "../images/images_4.png";
+import { motion } from "framer-motion";
+
+
 
 export const LandingPage = () => {
   return (
     <div className="landing">
       <div className="container__landing">
         <section className="result">
-          <div className="result__text">
+          <motion.div
+            className="result__text"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+            whileInView={{ opacity: 1 }}
+          >
             <h1>Узнайте результаты экзаменов</h1>
             <p>
               Для этого вам нужно выбрать муниципалитет, школу, год сдачи
@@ -18,23 +27,52 @@ export const LandingPage = () => {
             <Link className="result__button" to="/">
               Узнать
             </Link>
-          </div>
-          <img src={images_1} alt="" className="result__images" />
+          </motion.div>
+          <motion.img
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+            src={images_1}
+            alt=""
+            className="result__images"
+          />
         </section>
         <section className="works">
-          <h1 className="works__header">Как это работает?</h1>
+          <motion.h1
+            className="works__header"
+            initial={{ x: -300, }}
+            whileInView={{ x: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            Как это работает?
+          </motion.h1>
 
-          <div className="works__container">
-            <div className="works__item item1">
+          <div
+            className="works__container"
+            initial={{ x: -300 }}
+            whileInView={{ x: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <motion.div
+              className="works__item item1"
+              initial={{ x: -300 }}
+              whileInView={{ x: 0 }}
+              transition={{ duration: 0.4 }}
+            >
               <h1 className="works__title">1. Отправка данных</h1>
               <p className="works__text">
                 Мы реализуем динамическое Single Page приложение с асинхронной
                 бизнес логикой, позволяющее пользователю просматривать
                 статистику в режиме реального времени.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="works__item item2">
+            <motion.div
+              className="works__item item2"
+              initial={{ x: -300 }}
+              whileInView={{ x: 0 }}
+              transition={{ duration: 0.4 }}
+            >
               <h1 className="works__title">2. Запрос на получение данных</h1>
               <img src={images_2} alt="" />
               <p className="works__text">
@@ -43,9 +81,14 @@ export const LandingPage = () => {
                 набор данных. Уже в зависимости от конкретного запроса (школа,
                 год, предмет) составляется список рузультатов экзаменов.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="works__item item3">
+            <motion.div
+              className="works__item item3"
+              initial={{ x:300 }}
+              whileInView={{ x: 0 }}
+              transition={{ duration: 0.4 }}
+            >
               <div className="item3__content">
                 <h1 className="works__title">3. Графическое представление</h1>
                 <img src={images_3} alt="" />
@@ -56,10 +99,15 @@ export const LandingPage = () => {
                   баллов.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
-        <section className="look">
+        <motion.section
+          className="look"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        >
           <div className="look__container">
             <div className="look__context">
               <h1>Посмотрите свои результаты прямо сейчас</h1>
@@ -75,7 +123,7 @@ export const LandingPage = () => {
 
             <img src={images_4} alt="" />
           </div>
-        </section>
+        </motion.section>
       </div>
     </div>
   );

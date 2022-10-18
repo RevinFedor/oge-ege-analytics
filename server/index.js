@@ -3,7 +3,7 @@ const cors = require("cors")
 const userRouter = require("./routers/userRouter")
 const mynicipalRouter = require("./routers/mynicipalRouter")
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3002
 const HOST = 'localhost' // 192.168.43.191
 const app = express()
 

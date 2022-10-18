@@ -4,26 +4,38 @@ import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { LandingPage } from "./components/LandingPage";
 import { Select } from "./components/Select";
+import { SelectTable } from "./components/SelectTable";
+import { Tables } from "./components/Tables";
 
 const App = () => {
   return (
     <>
       <Header />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <div className="container__landing">
-                  <Select />
-                </div>
-                <Diagrams />
-              </>
-            }
-          />
-          <Route path="/landingpage" element={<LandingPage />} />
-        </Routes>
-
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <div className="container__landing">
+                <Select />
+              </div>
+              <Diagrams />
+            </>
+          }
+        />
+        <Route
+          path="/ballsystem"
+          element={
+            <>
+              <div className="container__landing">
+                <SelectTable />
+              </div>
+              <Tables />
+            </>
+          }
+        />
+        <Route path="/landingpage" element={<LandingPage />} />
+      </Routes>
 
       <Footer />
     </>

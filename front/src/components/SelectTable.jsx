@@ -1,54 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetch, fetchData, selectItems } from "../features/itemSlice";
+import { fetch, fetchBalls, fetchData, selectItems } from "../features/itemSlice";
 
-export const Select = () => {
+export const SelectTable = () => {
   // Выбор по селектору
   const [mynicipal, setselectMun] = useState("");
   const [schools, setselectShool] = useState("");
   const [year, setselectYear] = useState("");
-  const [item, setselectItem] = useState("");
 
+  // School
   const select = useSelector((state) => state.items.select);
-  const error = useSelector((state) => state.items.subject?.error);
+
+  const ballsError = useSelector((state) => state.items.balls?.error);
+
+
 
   const dispatch = useDispatch();
-
-  const hundler = () => {
-    const data = { mynicipal, schools, year, item };
-
-    dispatch(selectItems(data));
-    dispatch(fetchData(data));
-  };
 
   // получение списка муниципалитетов и школ
   useEffect(() => {
     dispatch(fetch());
   }, []);
 
-  const years = [2019, 2020, 2021, 2022];
-  const studies = [
-    "Русский язык",
-    "Математика профильная",
-    "ИКТ",
-    "Английский язык",
-    "Физика",
-    "Химия",
-    "Биология",
-    "История",
-    "Обществознание",
-    "Литература",
-    "География",
-    "Немецкий язык",
-  ];
-  
+  // отправка select
+  const hundler = () => {
+    const data = { mynicipal, schools, year };
+
+    dispatch(fetchBalls(data));
+  };
+
+  const years = [2019, 2020, 2021];
 
   return (
     <>
-      <div className="select__errors">{error}</div>
+      <div className="select__errors">{ballsError}</div>
       <div className={`select `}>
         <div className="select__wrapper">
-          <select onChange={(e) => setselectMun(e.target.value)}>
+          <select
+            className="select__items"
+            onChange={(e) => setselectMun(e.target.value)}
+          >
             <option>Муниципалитет</option>
             <option>Оренбург</option>
           </select>
@@ -69,15 +60,9 @@ export const Select = () => {
             })}
           </select>
         </div>
-        <div className="select__wrapper">
-          <select onChange={(e) => setselectItem(e.target.value)}>
-            <option>Предметы</option>
-            {studies.map((el) => {
-              return <option key={el}>{el}</option>;
-            })}
-          </select>{" "}
-        </div>
-        <button onClick={hundler}>Найти</button>
+        <button className="select__button" onClick={hundler}>
+          Показать отчет
+        </button>
       </div>
     </>
   );
