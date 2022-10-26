@@ -7,7 +7,6 @@ export const fetch = createAsyncThunk("user/fetchRegister", async function () {
   return data;
 });
 
-
 // отправка select и получения баллом
 export const fetchData = createAsyncThunk(
   "user/fetchData",
@@ -21,6 +20,7 @@ export const fetchData = createAsyncThunk(
   }
 );
 
+// получение баллов для первой таблицы
 export const fetchBalls = createAsyncThunk(
   "user/fetchBalls",
   async function (options, { rejectWithValue }) {
@@ -33,8 +33,18 @@ export const fetchBalls = createAsyncThunk(
   }
 );
 
-
-
+// получение баллов для второй таблицы
+export const fetchBallsYears = createAsyncThunk(
+  "user/fetchBallsYears",
+  async function (options, { rejectWithValue }) {
+    try {
+      const { data } = await axios.post("/api/yearAll", options);
+      return data;
+    } catch (e) {
+      return rejectWithValue(e);
+    }
+  }
+);
 
 const initialState = {
   items: [],
@@ -42,7 +52,7 @@ const initialState = {
   select: [],
   subject: [],
   errors: [],
-  balls: { data: null, error: null },
+  balls: { data: null, error: null, form: 'allYears' },
 };
 
 const itemSlice = createSlice({
@@ -51,6 +61,9 @@ const itemSlice = createSlice({
   reducers: {
     selectItems: (state, action) => {
       state.selectItems = action.payload.item;
+    },
+    uodateForm: (state, action) => {
+      state.balls.form = action.payload;
     },
   },
   extraReducers: {
@@ -64,18 +77,29 @@ const itemSlice = createSlice({
     [fetchData.rejected]: (state, action) => {
       state.errors = action.payload;
     },
-
+    // баллы
     [fetchBalls.fulfilled]: (state, action) => {
       state.balls.data = action.payload;
-      state.balls.error =null
+      state.balls.form = "balls";
+      state.balls.error = null;
     },
     [fetchBalls.rejected]: (state, action) => {
+      state.balls.error = action.payload.response.data.error;
+      state.balls.data = null;
+    },
+    // все года
+    [fetchBallsYears.fulfilled]: (state, action) => {
+      state.balls.data = action.payload;
+      state.balls.form = "allYears";
+      state.balls.error = null;
+    },
+    [fetchBallsYears.rejected]: (state, action) => {
       state.balls.error = action.payload.response.data.error;
       state.balls.data = null;
     },
   },
 });
 
-export const { selectItems } = itemSlice.actions;
+export const { selectItems, uodateForm } = itemSlice.actions;
 
 export default itemSlice.reducer;

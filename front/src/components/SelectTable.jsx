@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetch, fetchBalls, fetchData, selectItems } from "../features/itemSlice";
+import {
+  fetch,
+  fetchBalls,
+  fetchBallsYears,
+  fetchData,
+  selectItems,
+  uodateForm,
+} from "../features/itemSlice";
 
 export const SelectTable = () => {
   // Выбор по селектору
@@ -13,8 +20,6 @@ export const SelectTable = () => {
 
   const ballsError = useSelector((state) => state.items.balls?.error);
 
-
-
   const dispatch = useDispatch();
 
   // получение списка муниципалитетов и школ
@@ -24,12 +29,18 @@ export const SelectTable = () => {
 
   // отправка select
   const hundler = () => {
-    const data = { mynicipal, schools, year };
+    // в зависимости от года
+    if (year === "Все года") {
+      dispatch(fetchBallsYears({ mynicipal, schools }));
+      console.log({ mynicipal, schools });
+      return;
+    }
 
+    const data = { mynicipal, schools, year };
     dispatch(fetchBalls(data));
   };
 
-  const years = [2019, 2020, 2021];
+  const years = [2019, 2020, 2021, 2022, 2022, 2023, 2024, 2025, "Все года"];
 
   return (
     <>

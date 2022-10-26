@@ -1,24 +1,36 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { ballsNull } from "../store/balls";
+import { dataAllYearsTwo } from "../store/allYearsTwo";
 
 export const Tables = () => {
+  // баллы с хранилища
   let ballsStore = useSelector((state) => state.items.balls?.data?.message);
 
+  // вид таблицы
+  let ballsForm = useSelector((state) => state.items.balls?.form);
 
   // проверка на загрузку данных
   let ballsActual;
-  if (ballsStore) {
-    ballsActual = ballsStore;
-  } else {
-    ballsActual = ballsNull;
+  let ballsActualFullYear = dataAllYearsTwo.message;
+  if (ballsStore && ballsForm === "allYears") {
+    ballsActualFullYear = ballsStore;
+    console.log("1");
   }
-
+  if (ballsStore && ballsForm === "balls") {
+    ballsActual = ballsStore;
+    console.log("2");
+  }
+  if (ballsForm === "allYears") {
+    ballsActual = ballsNull;
+    console.log("3");
+  }
 
   // высчитавание общей суммы каждого объекта и процент
   let ballsPrecent = ballsActual.map((el) => {
     let subject = String(Object.keys(el));
     let arrayCurrent = Object.values(Object.values(el)[0]);
+    // массив со всеми числами
     let sum = arrayCurrent.reduce((acc, number) => acc + number, 0);
     let arrayTotal = arrayCurrent.map(
       (el) => String(Math.round((el * 100) / sum)) + "%"
@@ -27,30 +39,113 @@ export const Tables = () => {
   });
 
   // переключатель показывающий бальную и обычную систему
-  const [toogle1, setToogle1] = useState(true);
-  const [toogle2, setToogle2] = useState(false);
+  const [toogle, setToogle] = useState("Count");
+
   let balls;
-  const onClickHundler = () => {
-    setToogle1(true);
-    setToogle2(false);
+  const onCountHundler = () => {
+    setToogle("Count");
   };
-  const onDisabledHundler = () => {
-    setToogle1(false);
-    setToogle2(true);
+  const onBallsHundler = () => {
+    setToogle("Balls");
   };
-  if (toogle1) {
+  if (toogle === "Count") {
     balls = ballsActual;
-  } else {
+  } else if (toogle === "Balls") {
     balls = ballsPrecent;
   }
 
+  // таблица по одному году
+  const singleYear = balls.map((item) => {
+    // предметы и баллы
+    let subject = Object.keys(item);
+    let balles = Object.values(Object.values(item)[0]);
+
+    return (
+
+        <tr>
+          <td>{subject}</td>
+          {balles.map((el) => (
+            <td>
+              {toogle === "Count" ? (
+                <div>{el}</div>
+              ) : (
+                <>
+                  <div className="tabel-active" style={{ width: el }}></div>
+                  <div>{el}</div>
+                </>
+              )}
+            </td>
+          ))}
+        </tr>
+    
+    );
+  });
+
+  // таблица все года
+  const lebgthYear = Object.keys(ballsActualFullYear);
+  const lenghtSub = Object.values(ballsActualFullYear);
+  const fullYear = lebgthYear.map((item, i, array) => {
+    // выводит год и 7 объектов и название предмета и баллами
+
+    return lenghtSub.map((el, i2) => {
+      // все числа
+      const filterPrecent = Object.values(el[i]).filter(
+        (el) => typeof el === "number"
+      );
+      // вывод всех предметы
+      const arraySubject = Object.values(el[i]).filter(
+        (el) => typeof el === "string"
+      );
+
+      let sumArrayCount = filterPrecent.reduce(
+        (acc, number) => acc + number,
+        0
+      );
+      let precentArray = filterPrecent.map(
+        (el) => String(Math.round((el * 100) / sumArrayCount)) + "%"
+      );
+
+      return (
+          <tr>
+            <td>{lebgthYear[i2]}</td>
+            {arraySubject.map((el) => {
+              return <td className="subject">{el}</td>;
+            })}
+            {toogle === "Count"
+              ? filterPrecent.map((el) => {
+                  return <td className="subject">{el}</td>;
+                })
+              : precentArray.map((el) => {
+                  return (
+                    <>
+                      <td className="subject">
+                        <div
+                          className="tabel-active"
+                          style={{ width: el }}
+                        ></div>
+                        <div>{el}</div>
+                      </td>
+                    </>
+                  );
+                })}
+          </tr>
+      );
+    });
+  });
+
   return (
-    <div className="">
+    <div>
       <div className="tabel__buttons">
-        <button onClick={onClickHundler} disabled={toogle1}>
+        <button
+          onClick={onCountHundler}
+          disabled={toogle === "Count" ? true : false}
+        >
           Числа
         </button>
-        <button onClick={onDisabledHundler} disabled={toogle2}>
+        <button
+          onClick={onBallsHundler}
+          disabled={toogle === "Balls" ? true : false}
+        >
           Проценты
         </button>
       </div>
@@ -59,48 +154,26 @@ export const Tables = () => {
         <table className="content-table">
           <thead>
             <tr>
+              {ballsForm === "allYears" ? <th>Года</th> : ""}
               <th>Предметы</th>
-              <th>0-9</th>
-              <th>10-19</th>
-              <th>20-29</th>
-              <th>30-39</th>
-              <th>40-49</th>
-              <th>50-59</th>
-              <th>60-69</th>
-              <th>70-79</th>
-              <th>80-89</th>
-              <th>90-99</th>
-              <th>100</th>
+              <th className="table-color-1">0-9</th>
+              <th className="table-color-1">10-19</th>
+              <th className="table-color-1">20-29</th>
+              <th className="table-color-2">30-39</th>
+              <th className="table-color-2">40-49</th>
+              <th className="table-color-2">50-59</th>
+              <th className="table-color-3">60-69</th>
+              <th className="table-color-3">70-79</th>
+              <th className="table-color-3">80-89</th>
+              <th className="table-color-4">90-99</th>
+              <th className="table-color-4">100</th>
             </tr>
           </thead>
-          {balls.map((item) => {
-            // предметы и баллы
-            let subject = Object.keys(item);
-            let balles = Object.values(Object.values(item)[0]);
-
-            return (
-              <tbody>
-                <tr>
-                  <td>{subject}</td>
-                  {balles.map((el) => (
-                    <td>
-                      {toogle1 ? (
-                        <div>{el}</div>
-                      ) : (
-                        <>
-                          <div
-                            className="tabel-active"
-                            style={{ width: el }}
-                          ></div>
-                          <div>{el}</div>
-                        </>
-                      )}
-                    </td>
-                  ))}
-                </tr>
-              </tbody>
-            );
-          })}
+          {ballsForm === "allYears" ? (
+            <tbody className="even-toogle">{fullYear}</tbody>
+          ) : (
+            <tbody>{singleYear}</tbody>
+          )}
         </table>
       </div>
     </div>

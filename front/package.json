@@ -12,6 +12,7 @@
     "chart.js": "^3.9.1",
     "concurrently": "^7.4.0",
     "framer-motion": "^7.5.3",
+    "lodash": "^4.17.21",
     "node-sass": "^6.0.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
@@ -22,7 +23,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3005 && react-scripts start",
     "client": "npm start",
     "server": "npm run start --prefix back_test-main",
     "dev": "concurrently \"npm run server\" \"npm run client\" ",

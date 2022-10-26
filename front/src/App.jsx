@@ -13,7 +13,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route
-          path="/"
+          path="/egeoge"
           element={
             <>
               <div className="container__landing">
@@ -34,7 +34,7 @@ const App = () => {
             </>
           }
         />
-        <Route path="/landingpage" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage />} />
       </Routes>
 
       <Footer />

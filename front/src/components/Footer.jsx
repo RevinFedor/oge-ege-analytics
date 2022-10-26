@@ -9,7 +9,11 @@ export const Footer = () => {
       <div className="container__landing">
         <footer className="footer">
           <div className="footer__info">
-            <img src={logo} alt="" className="footer__logo" />
+            <Link to="/">
+
+              <img src={logo} alt="" className="footer__logo" />
+            </Link>
+
             <h3>Основная информация</h3>
             <p>Регистрация</p>
             <p>Авторизация</p>
@@ -18,10 +22,10 @@ export const Footer = () => {
             <p>© 2003 — 2022, ЕГЭ, ОГЭ</p>
           </div>
           <div className="footer__links">
-            <Link to="/landingpage" className="nav__logo">
+            <Link to="/" className="nav__logo">
               <img src={tg} alt="" />
             </Link>
-            <Link to="/landingpage" className="nav__logo">
+            <Link to="/" className="nav__logo">
               <img src={vk} alt="" />
             </Link>
           </div>

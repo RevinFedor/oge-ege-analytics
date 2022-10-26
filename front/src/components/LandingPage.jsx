@@ -24,7 +24,7 @@ export const LandingPage = () => {
               Для этого вам нужно выбрать муниципалитет, школу, год сдачи
               экзамена и предмет
             </p>
-            <Link className="result__button" to="/">
+            <Link className="result__button" to="/ballsystem">
               Узнать
             </Link>
           </motion.div>
@@ -40,7 +40,7 @@ export const LandingPage = () => {
         <section className="works">
           <motion.h1
             className="works__header"
-            initial={{ x: -300, }}
+            initial={{ x: -300 }}
             whileInView={{ x: 0 }}
             transition={{ duration: 0.4 }}
           >
@@ -85,7 +85,7 @@ export const LandingPage = () => {
 
             <motion.div
               className="works__item item3"
-              initial={{ x:300 }}
+              initial={{ x: 300 }}
               whileInView={{ x: 0 }}
               transition={{ duration: 0.4 }}
             >

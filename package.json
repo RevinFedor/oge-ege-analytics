@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "server": "nodemon index.js --prefix server",
+    "front": "npm run start --prefix front",
+    "dev": "concurrently \"npm run server\" \"npm run front\" "
+  },
+  "dependencies": {
+    "concurrently": "^7.5.0"
+  }
+}

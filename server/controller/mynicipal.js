@@ -47,7 +47,7 @@ class Mynicipal {
             const [rowsFullSchools, fields] = await connect.execute("SELECT * FROM `infoselect` WHERE 1")
             return res.status(200).json({ message: rowsFullSchools })
         } catch (error) {
-            return res.status(202).json({error: error.message})
+            return res.status(404).json({error: error.message})
         }
     }
 
@@ -87,6 +87,56 @@ class Mynicipal {
                             
                             return res.status(200).json({message: itemsObject})
                         }
+                    }
+                } catch (error) {
+                    return res.status(404).json({ error: "Нету данных о `школе` и `годе`" })
+                }
+
+            } else {
+                return res.status(404).json({ error: "Ошибка" })
+            }
+        } catch (error) {
+            return res.status().json({error: error.message})
+        }
+    }
+
+    async yearAll(req, res) {
+        try {
+            const {mynicipal, schools, yearAll} = req.body
+            const connect = await connection
+
+            const [rows, fields] = await connect.execute("SELECT * FROM `infomynicipal` WHERE `mynicipal` = ?", [mynicipal])
+            const expireMynicipal = rows[0]
+
+            if(!expireMynicipal)
+                return res.status(404).json({ error: "Муниципалитета нет!" })
+
+            else if (expireMynicipal) {
+                try {
+                    const rowsMynicipal = await connect.execute("SELECT * FROM `infoyearschools` WHERE `schools` = ? and `mynicipal` = ?", [schools, mynicipal])
+                    const expireSchools = rowsMynicipal[0]
+                    
+                    if(String(expireSchools) == "") {
+                        return res.status(404).json({ error: "Школа не выбрана и год!" })
+                    } else {
+                        let itemsObject = []
+                        let itemsFullObject = {}
+
+                        for (let index2 = 0; index2 < expireSchools.length; index2++) {
+                            let keyID = expireSchools[index2]['keyID']
+                            const rowsFullItems = await connect.execute("SELECT `item`, `0-9`, `10-19`, `20-29`, `30-39`, `40-49`, `50-59`, `60-69`, `70-79`, `80-89`, `90-99`, `-100` FROM `infofullitems` WHERE `keyID` = "+ keyID +"")
+                            const rowsItemsName = await connect.execute("SELECT `year` FROM `infoyearschools` WHERE `keyID` = "+ keyID +"")
+                            const expireFullItems = rowsFullItems[0]
+                            const expireItemsName = rowsItemsName[0]
+                            
+                            if(String(expireFullItems) == "")
+                                return res.status(404).json({ error: "Предметы не найдены" })
+                            else {          
+                                itemsFullObject[expireItemsName[0]['year']] = expireFullItems
+                                itemsObject.push(itemsFullObject)
+                            } 
+                        }
+                        return res.status(200).json({message: itemsObject[0]})
                     }
                 } catch (error) {
                     return res.status(404).json({ error: "Нету данных о `школе` и `годе`" })
