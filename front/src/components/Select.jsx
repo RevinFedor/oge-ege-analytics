@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetch, fetchData, selectItems } from "../features/itemSlice";
+import { Diagrams } from "./Diagrams";
 
 export const Select = () => {
   // Выбор по селектору
@@ -79,6 +80,7 @@ export const Select = () => {
         </div>
         <button onClick={hundler}>Найти</button>
       </div>
+      <Diagrams />
     </>
   );
 };

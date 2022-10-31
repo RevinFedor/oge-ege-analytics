@@ -92,14 +92,15 @@ export function Diagrams() {
     labels = Object.keys(select.message[0]);
     dataTable = Object.values(select.message[0]);
 
-    // проценты для диаграммы
+  
+
+    // сумма всех чисел для диаграммы
     const counter = (arr) => {
-      let array = arr.map((el) => Number(el));
-      let s = 0;
-      for (let el of array) {
-        s = s + el;
-      }
-      return s;
+      let array = arr.reduce((previousValue, el, i, array) => {
+        previousValue += el;
+        return previousValue;
+      });
+      return array;
     };
 
     
@@ -132,7 +133,6 @@ export function Diagrams() {
           .map((el) => select.message[0][el])
       ) / itemsSum
     );
-   
     chartPercent = {
       item2: itemsTwo,
       item3: itemsThree,
@@ -172,7 +172,7 @@ export function Diagrams() {
 
   return (
     <div className={`diargams ${divNone ? "none" : ""}`}>
-      <CircleChart chartPercent={chartPercent} />
+      {/* <CircleChart chartPercent={chartPercent} /> */}
       <div className="diargams__graphic">
         <Bar options={options} data={data} />
       </div>

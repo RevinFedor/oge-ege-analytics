@@ -19,7 +19,7 @@ const App = () => {
               <div className="container__landing">
                 <Select />
               </div>
-              <Diagrams />
+              
             </>
           }
         />

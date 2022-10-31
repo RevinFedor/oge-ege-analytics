@@ -1,1 +1,5 @@
 - ограничитель
+
+
+front\src\components\Diagrams.jsx
+ - сделать loader
